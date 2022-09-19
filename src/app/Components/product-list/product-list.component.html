@@ -1,0 +1,27 @@
+<!-- <div class="card-top container-fluid"></div> -->
+<div class="container">
+
+    <div class="row ">
+        <h3 class="d-flex justify-content-center">Phones</h3>
+        <div *ngFor="let product of products" class="card col-sm-8 col-md-4 col-lg-2 shadow-lg p-3 mb-5 bg-white rounded">
+            <div [routerLink]="['/details', product.itemId]" class="card-title justify-content-center">
+                <h5>
+                    <a [title]="product.name + ' details'">
+                        {{product.name}}
+                    </a>
+                </h5>
+               <div class="card-img-top"><img class="img-thumbnail" src="{{product.image}}" alt="" /></div> 
+            </div>
+            <div class="card-">
+            <p><strong>Price</strong>: ${{product.price}}</p>
+            <label class="from-label"><strong>Quantity</strong></label>
+            <span>
+                <button class="btn btn-sm " (click)="subQty(product.itemId)">-</button>
+                <span>{{product.quantity}}</span>
+                <button class="btn btn-sm" (click)="addQty(product.itemId)">+</button>
+            </span>
+            <button type="btn" class="btn btn-primary btn-sm" (click)=addToCart(product)>Add To Cart</button>
+        </div>
+        </div>
+    </div>
+</div>

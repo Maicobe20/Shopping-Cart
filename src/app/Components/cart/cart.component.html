@@ -1,0 +1,54 @@
+<div *ngIf="cartList.length == 0" class="  row">
+    <div class="col-1"></div>
+    <div class="card col-10">
+        <img src="https://www.eyecatchers.in/shop-online/images/cart-empty.jpg" alt="">
+        <p><button class="btn btn-primary" routerLink="">Shop Now</button></p>
+    </div>
+    <div class="col-1"></div>
+</div>
+
+<ng-container *ngIf="cartList.length > 0">
+    <div class="card-Table row mt-5">
+        <div class="col-2"></div>
+        <div class="card cart-product col-md-8">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cartList">
+                        <td><strong>{{product.name}}</strong></td>
+                        <td ><img class="img-thumbnail" src="{{product.image}}" alt=""></td>
+                        <td>${{product.price}}</td>
+                        <td > <span>
+                            <span><button class="btn"(click)="subQty(product.itemId)">-</button></span>
+                            <span>{{product.quantity}}</span>
+                            <button class="btn" (click)="addQty(product.itemId)">+</button>
+                        </span>
+                           </td>
+                        <td>{{product.quantity * product.price}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Total:</strong></td>
+                        <td></td>
+                        <td><strong>{{grandTotal}}</strong></td> 
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-primary btn-sm me-2" routerLink="/">Shop More</button>
+                <button type="button" class="btn btn-success btn-sm" (click)="checkOut()">CheckOut</button>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</ng-container>
